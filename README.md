@@ -1,21 +1,14 @@
 # Viewing Party
 
-This is the base repo for the [Viewing Party Lite project](https://backend.turing.io/module3/projects/viewing_party_lite) used for Turing's Backend Module 3.
-
 ### About this Project
 
 Viewing Part Lite is an application in which users can explore movie options and create a viewing party event for themselves and other users of the application.
 
 ## Setup for the use of the project
 
-1. A conveyor belt link will be sent out at project kickoff so that you can both fork and copy the project board on this base repo. 
+Worked on this project with Jenn Halloran. We set up the service, facade, and poro together to connect to the TMDB api. From there we each utilized the existing service to make api calls for our own parts of the project. 
 
-## Local Setup for any other use
-
-1. Fork and Clone the repo
-2. Install gem packages: `bundle install`
-3. Setup the database: `rails db:create`
-
+This project begins with a welcome page where all existing users are listed with links to their dashboards. There is a button to create a new user which directs the user to a form to fill in teh name and email. The system checks that the email has not been previously used and that all fields are filled in and prompts the user to re-enter the fields if any information is not valid.   
 
 ## Versions
 
