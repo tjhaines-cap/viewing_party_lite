@@ -1,4 +1,5 @@
 <center>
+<h3> <%= button_to "Login", "/login", method: :get %>
 <h3> <%= render partial: 'partials/buttons/create_user_button' %> </h3>
 <h3>Existing Users: </h3>
 <% @users.each_with_index do |user, index| %>

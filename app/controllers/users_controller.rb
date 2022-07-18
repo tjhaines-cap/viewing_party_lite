@@ -33,6 +33,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def login
+
+  end
+
   private
 
   def user_params
