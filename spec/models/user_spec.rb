@@ -19,9 +19,9 @@ RSpec.describe User, type: :model do
   describe 'class methods' do
     describe '#other_users' do
       it 'returns all users except the one with the given id' do
-        user1 = User.create!(name: 'Jane Powell', email: 'jpowell38@gmail.com')
-        user2 = User.create!(name: 'Judy Garland', email: 'jgarland@gmail.com')
-        user3 = User.create!(name: 'Fred Astaire', email: 'tapshoes@gmail.com')
+        user1 = User.create!(name: 'Jane Powell', email: 'jpowell38@gmail.com', password: 'test123')
+        user2 = User.create!(name: 'Judy Garland', email: 'jgarland@gmail.com', password: 'test123')
+        user3 = User.create!(name: 'Fred Astaire', email: 'tapshoes@gmail.com', password: 'test123')
 
         expect(User.other_users(user1.id)).to match_array([user2, user3])
       end

@@ -20,7 +20,7 @@ describe 'user new/registration page' do
   end
 
   it 'displays an error message if the email entered is not unique' do
-    User.create!(name: 'Jane', email: 'eleven@upsidedown.com')
+    User.create!(name: 'Jane', email: 'eleven@upsidedown.com', password: 'test123')
 
     fill_in 'user[name]', with: 'Max'
     fill_in 'user[email]', with: 'eleven@upsidedown.com'
@@ -40,7 +40,7 @@ describe 'user new/registration page' do
   end
 
   it 'displays an error message if a name is not entered on the form and the email is not unique' do
-    User.create!(name: 'Jane', email: 'eleven@upsidedown.com')
+    User.create!(name: 'Jane', email: 'eleven@upsidedown.com', password: 'test123')
 
     fill_in 'user[name]', with: ''
     fill_in 'user[email]', with: 'eleven@upsidedown.com'
