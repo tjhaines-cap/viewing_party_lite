@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'landing page', type: :feature do
   it 'displays the title of the application, a button to create new users, and existing users' do
-    user1 = User.create!(name: 'Jane Powell', email: 'jpowell38@gmail.com')
-    user2 = User.create!(name: 'Ann Miller', email: 'amiller@gmail.com')
+    user1 = User.create!(name: 'Jane Powell', email: 'jpowell38@gmail.com', password: 'test123')
+    user2 = User.create!(name: 'Ann Miller', email: 'amiller@gmail.com', password: 'test123')
     visit '/'
 
     expect(page).to have_content('Viewing Party Light')
@@ -16,19 +16,27 @@ RSpec.describe 'landing page', type: :feature do
     click_button('Create a New User')
     expect(current_path).to eq('/register')
     visit '/'
+    expect(page).to have_button('Login')
+    click_button('Login')
+    expect(current_path).to eq('/login')
+    visit '/'
     expect(page).to have_content('Existing Users:')
     within '#user-0' do
-      expect(page).to have_link("jpowell38@gmail.com's Dashboard")
-      expect(page).to_not have_link("amiller@gmail.com's Dashboard")
-      click_link("jpowell38@gmail.com's Dashboard")
-      expect(current_path).to eq("/users/#{user1.id}")
-      visit '/'
+      expect(page).to have_content("jpowell38@gmail.com")
+      expect(page).to_not have_content("amiller@gmail.com")
+      # expect(page).to have_link("jpowell38@gmail.com's Dashboard")
+      # expect(page).to_not have_link("amiller@gmail.com's Dashboard")
+      # click_link("jpowell38@gmail.com's Dashboard")
+      # expect(current_path).to eq("/users/#{user1.id}")
+      # visit '/'
     end
     within '#user-1' do
-      expect(page).to have_link("amiller@gmail.com's Dashboard")
-      expect(page).to_not have_link("jpowell38@gmail.com's Dashboard")
-      click_link("amiller@gmail.com's Dashboard")
-      expect(current_path).to eq("/users/#{user2.id}")
+      expect(page).to have_content("amiller@gmail.com")
+      expect(page).to_not have_content("jpowell38@gmail.com")
+      # expect(page).to have_link("amiller@gmail.com's Dashboard")
+      # expect(page).to_not have_link("jpowell38@gmail.com's Dashboard")
+      # click_link("amiller@gmail.com's Dashboard")
+      # expect(current_path).to eq("/users/#{user2.id}")
     end
   end
 end

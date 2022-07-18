@@ -4,8 +4,8 @@ require 'rails_helper'
 
 describe 'user show page (dashboard)' do
   before do
-    @user1 = User.create!(name: 'Jane', email: 'eleven@upsidedown.com')
-    @user2 = User.create!(name: 'Dustin', email: 'hellfire@hawkins.edu')
+    @user1 = User.create!(name: 'Jane', email: 'eleven@upsidedown.com', password: 'test123')
+    @user2 = User.create!(name: 'Dustin', email: 'hellfire@hawkins.edu', password: 'test123')
   end
   it 'displays the users name' do
     visit user_path(@user1)
@@ -72,7 +72,7 @@ describe 'user show page (dashboard)' do
 
     within "#viewing-party#{party1.id}" do
       expect(page).to have_content('You are hosting!')
-      within ".attendees" do
+      within '.attendees' do
         expect(page).to have_content('Dustin (hellfire@hawkins.edu)')
         expect(page).to_not have_content('Jane (eleven@upsidedown.com)')
       end
@@ -80,7 +80,7 @@ describe 'user show page (dashboard)' do
 
     within "#viewing-party#{party2.id}" do
       expect(page).to have_content('Dustin is hosting a party!')
-      within ".attendees" do
+      within '.attendees' do
         expect(page).to have_content('Jane (eleven@upsidedown.com)')
       end
     end
