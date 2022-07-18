@@ -4,6 +4,16 @@
 
 Viewing Part Lite is an application in which users can explore movie options and create a viewing party event for themselves and other users of the application.
 
+## Installation
+
+```
+bundle install
+bundle exec figaro install
+```
+add `tmdb_api_key: <you_key>` to `application.yml`
+`rails db:create`
+`rails dv:migrate`
+
 ## Setup for the use of the project
 
 Worked on this project with Jenn Halloran. We set up the service, facade, and poro together to connect to the TMDB api. From there we each utilized the existing service to make api calls for our own parts of the project. 
