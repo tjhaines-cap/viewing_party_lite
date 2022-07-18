@@ -72,7 +72,7 @@ describe 'user show page (dashboard)' do
 
     within "#viewing-party#{party1.id}" do
       expect(page).to have_content('You are hosting!')
-      within ".attendees" do
+      within '.attendees' do
         expect(page).to have_content('Dustin (hellfire@hawkins.edu)')
         expect(page).to_not have_content('Jane (eleven@upsidedown.com)')
       end
@@ -80,7 +80,7 @@ describe 'user show page (dashboard)' do
 
     within "#viewing-party#{party2.id}" do
       expect(page).to have_content('Dustin is hosting a party!')
-      within ".attendees" do
+      within '.attendees' do
         expect(page).to have_content('Jane (eleven@upsidedown.com)')
       end
     end

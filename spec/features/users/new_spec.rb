@@ -57,7 +57,7 @@ describe 'user new/registration page' do
     fill_in 'user[password]', with: 'Test123'
     fill_in 'user[password_confirmation]', with: 'Test123'
     click_button('Create New User')
-    
+
     expect(current_path).to eq('/register')
     expect(page).to have_content('Please enter a valid name and unique e-mail address.')
   end
