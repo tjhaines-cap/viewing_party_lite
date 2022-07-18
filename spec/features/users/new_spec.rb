@@ -61,4 +61,24 @@ describe 'user new/registration page' do
     expect(current_path).to eq('/register')
     expect(page).to have_content('Please enter a valid name and unique e-mail address.')
   end
+
+  it 'displays an error message if the passwords do not match or are not provided' do
+    fill_in 'user[name]', with: 'Thomas'
+    fill_in 'user[email]', with: 'eleven@upsidedown.com'
+    fill_in 'user[password]', with: 'Test123'
+    fill_in 'user[password_confirmation]', with: 'Test'
+    click_button('Create New User')
+
+    expect(current_path).to eq('/register')
+    expect(page).to have_content('Passwords do not match.')
+
+    fill_in 'user[name]', with: 'Thomas'
+    fill_in 'user[email]', with: 'eleven@upsidedown.com'
+    fill_in 'user[password]', with: ''
+    fill_in 'user[password_confirmation]', with: 'Test'
+    click_button('Create New User')
+
+    expect(current_path).to eq('/register')
+    expect(page).to have_content('Please enter a password.')
+  end
 end

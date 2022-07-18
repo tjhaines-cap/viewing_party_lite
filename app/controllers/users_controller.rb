@@ -13,6 +13,12 @@ class UsersController < ApplicationController
     elsif user.errors.full_messages == ["Name can't be blank"]
       flash[:alert] = 'Please enter a valid name.'
       redirect_to '/register'
+    elsif user.errors.full_messages == ["Password confirmation doesn't match Password"]
+      flash[:alert] = 'Passwords do not match.'
+      redirect_to '/register'
+    elsif user.errors.full_messages == ["Password can't be blank", "Password digest can't be blank"]
+      flash[:alert] = 'Please enter a password.'
+      redirect_to '/register'
     else
       flash[:alert] = 'Please enter a valid name and unique e-mail address.'
       redirect_to '/register'
