@@ -21,7 +21,6 @@ RSpec.describe 'landing page', type: :feature do
     expect(current_path).to eq('/login')
     visit '/'
     expect(page).to have_content('Existing Users:')
-    save_and_open_page
     within '#user-0' do
       expect(page).to have_content("jpowell38@gmail.com")
       expect(page).to_not have_content("amiller@gmail.com")
