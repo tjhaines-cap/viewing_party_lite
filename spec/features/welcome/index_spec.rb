@@ -39,4 +39,26 @@ RSpec.describe 'landing page', type: :feature do
       # expect(current_path).to eq("/users/#{user2.id}")
     end
   end
+
+  it 'has logout button if user is logged in' do
+    user1 = User.create!(name: 'Jane Powell', email: 'jpowell38@gmail.com', password: 'test123')
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
+    visit '/login'
+    fill_in :email, with: 'jpowell38@gmail.com'
+    fill_in :password, with: 'test123'
+    click_button('Login')
+
+    visit '/'
+
+    expect(page).to have_button('Logout')
+    expect(page).to_not have_button('Login')
+    expect(page).to_not have_button('Create a New User')
+
+    click_button('Logout')
+
+    expect(current_path).to eq('/')
+    expect(page).to_not have_button('Logout')
+    expect(page).to have_button('Login')
+    expect(page).to have_button('Create a New User')
+  end
 end

@@ -1,6 +1,11 @@
 <center>
-<h3> <%= button_to "Login", "/login", method: :get %>
-<h3> <%= render partial: 'partials/buttons/create_user_button' %> </h3>
+
+<% if session[:user_id] %>
+  <h3> <%= button_to "Logout", "/logout", method: :delete %>
+<% else %>
+  <h3> <%= button_to "Login", "/login", method: :get %>
+  <h3> <%= render partial: 'partials/buttons/create_user_button' %> </h3>
+<% end %>
 <h3>Existing Users: </h3>
 <% @users.each_with_index do |user, index| %>
   <div id="user-<%= index %>">
