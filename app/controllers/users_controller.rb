@@ -27,12 +27,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @user = User.find(params[:id])
     @user = current_user
+    if !@user
+      redirect_to '/'
+      flash[:errors] = 'You must be logged in to access your dashboard'
+    end
   end
 
   def discover
-    # @user = User.find(params[:id])
     @user = current_user
   end
 

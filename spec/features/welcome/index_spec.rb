@@ -55,5 +55,19 @@ RSpec.describe 'landing page', type: :feature do
     expect(page).to_not have_button('Logout')
     expect(page).to have_button('Login')
     expect(page).to have_button('Create a New User')
+    expect(page).to_not have_content('Existing Users:')
+    expect(page).to_not have_content("amiller@gmail.com")
+    expect(page).to_not have_content("jpowell38@gmail.com")
+  end
+
+  it 'displays error message if user tries to go to /dashboard without logging in' do
+    user1 = User.create!(name: 'Jane Powell', email: 'jpowell38@gmail.com', password: 'test123')
+    user2 = User.create!(name: 'Ann Miller', email: 'amiller@gmail.com', password: 'test123')
+    
+    visit '/dashboard'
+
+    expect(current_path).to eq('/')
+    save_and_open_page
+    expect(page).to have_content('You must be logged in to access your dashboard')
   end
 end
