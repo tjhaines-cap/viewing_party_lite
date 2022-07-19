@@ -12,7 +12,7 @@ RSpec.describe 'login form page', type: :feature do
     fill_in :password, with: 'test123'
     click_button('Login')
 
-    expect(current_path).to eq(user_path(user1))
+    expect(current_path).to eq('/dashboard')
   end
 
   it 'displays error if either invalid email or invalid password entered' do

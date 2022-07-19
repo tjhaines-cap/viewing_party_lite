@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
-      redirect_to user_path(user)
+      redirect_to '/dashboard'
     elsif user.errors.full_messages == ['Email has already been taken']
       flash[:alert] = 'Oops, that email is already in use! Please try again with a unique email.'
       redirect_to '/register'
@@ -27,11 +27,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    @user = current_user
   end
 
   def discover
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    @user = current_user
   end
 
   def login_form; end
@@ -40,7 +42,7 @@ class UsersController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to user_path(user)
+      redirect_to '/dashboard'
       flash[:success] = "Welcome back, #{user.email}!"
     else
       redirect_to '/login'

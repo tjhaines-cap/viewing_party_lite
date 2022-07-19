@@ -17,7 +17,7 @@ describe 'user new/registration page' do
 
     user = User.last
 
-    expect(current_path).to eq(user_path(user))
+    expect(current_path).to eq('/dashboard')
     expect(page).to have_content("Jane's Dashboard")
     expect(user.password_digest).to_not eq('Test123')
     expect(user).to have_attribute(:password_digest)
