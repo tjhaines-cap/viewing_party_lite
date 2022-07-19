@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
+      session[:user_id] = user.id
       redirect_to user_path(user)
     elsif user.errors.full_messages == ['Email has already been taken']
       flash[:alert] = 'Oops, that email is already in use! Please try again with a unique email.'
@@ -38,6 +39,7 @@ class UsersController < ApplicationController
   def login_user
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
       redirect_to user_path(user)
       flash[:success] = "Welcome back, #{user.email}!"
     else
