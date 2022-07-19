@@ -20,24 +20,9 @@ RSpec.describe 'landing page', type: :feature do
     click_button('Login')
     expect(current_path).to eq('/login')
     visit '/'
-    expect(page).to have_content('Existing Users:')
-    within '#user-0' do
-      expect(page).to have_content("jpowell38@gmail.com")
-      expect(page).to_not have_content("amiller@gmail.com")
-      # expect(page).to have_link("jpowell38@gmail.com's Dashboard")
-      # expect(page).to_not have_link("amiller@gmail.com's Dashboard")
-      # click_link("jpowell38@gmail.com's Dashboard")
-      # expect(current_path).to eq("/users/#{user1.id}")
-      # visit '/'
-    end
-    within '#user-1' do
-      expect(page).to have_content("amiller@gmail.com")
-      expect(page).to_not have_content("jpowell38@gmail.com")
-      # expect(page).to have_link("amiller@gmail.com's Dashboard")
-      # expect(page).to_not have_link("jpowell38@gmail.com's Dashboard")
-      # click_link("amiller@gmail.com's Dashboard")
-      # expect(current_path).to eq("/users/#{user2.id}")
-    end
+    expect(page).to_not have_content('Existing Users:')
+    expect(page).to_not have_content("amiller@gmail.com")
+    expect(page).to_not have_content("jpowell38@gmail.com")
   end
 
   it 'has logout button if user is logged in' do
