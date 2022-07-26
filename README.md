@@ -6,19 +6,21 @@ Viewing Part Lite is an application in which users can explore movie options and
 
 ## Installation
 
+Oncec you have cloned down this repository run
 ```
 bundle install
 bundle exec figaro install
+rails db:create
+rails db:migrate
 ```
 add `tmdb_api_key: <you_key>` to `application.yml`
-`rails db:create`
-`rails dv:migrate`
 
 ## Setup for the use of the project
 
-Worked on this project with Jenn Halloran. We set up the service, facade, and poro together to connect to the TMDB api. From there we each utilized the existing service to make api calls for our own parts of the project. 
+Worked on this project with Jennifer Halloran. We set up the service, facade, and poro together to connect to the TMDB api. From there we each utilized the existing service to make api calls for our own parts of the project. 
 
 This project begins with a welcome page where all existing users are listed with links to their dashboards. There is a button to create a new user which directs the user to a form to fill in teh name and email. The system checks that the email has not been previously used and that all fields are filled in and prompts the user to re-enter the fields if any information is not valid.   
+
 
 ## Versions
 
