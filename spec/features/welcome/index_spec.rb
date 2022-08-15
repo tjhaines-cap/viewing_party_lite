@@ -67,7 +67,6 @@ RSpec.describe 'landing page', type: :feature do
     visit '/dashboard'
 
     expect(current_path).to eq('/')
-    save_and_open_page
     expect(page).to have_content('You must be logged in to access your dashboard')
   end
 end

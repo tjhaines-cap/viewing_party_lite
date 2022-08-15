@@ -10,6 +10,7 @@ RSpec.describe 'new viewing party page' do
     attributes = JSON.parse(File.read('./spec/fixtures/movie_details.json'), symbolize_names: true)
     attributes2 = JSON.parse(File.read('./spec/fixtures/lock_stock_movie_details.json'), symbolize_names: true)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
+    allow(Date).to receive(:today).and_return(("01/08/2022").to_date)
     @movie = Movie.new(attributes)
     @movie2 = Movie.new(attributes2)
   end

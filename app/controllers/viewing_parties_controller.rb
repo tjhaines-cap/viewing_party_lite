@@ -10,12 +10,15 @@ class ViewingPartiesController < ApplicationController
   def create
     movie = MovieFacade.movie_details(params[:movie_id])
     if params[:viewing_party][:duration].to_i < movie.runtime_mins
+
       flash[:alert] = "Duration of party must be longer than the runtime of the movie. #{movie.runtime_mins} mins"
       redirect_to "/movies/#{params[:movie_id]}/viewing_party/new"
     elsif params[:viewing_party][:date].to_date < Date.today
+
       flash[:alert] = 'Date of party must be in the future.'
       redirect_to "/movies/#{params[:movie_id]}/viewing_party/new"
     else
+
       viewing_party = ViewingParty.create!(viewing_party_params)
       invite_ids = []
       params[:viewing_party].each do |key, _value|
