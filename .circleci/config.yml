@@ -13,8 +13,7 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker: # run the steps with Docker
-      - image: circleci/ruby:2.7.2 # if you're using ruby version >= 
-3.0, use cimg/ruby:3.x.y 
+      - image: circleci/ruby:2.7.2 # if you're using ruby version >= 3.0, use cimg/ruby:3.x.y 
         environment: # environment variables for primary container
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
@@ -58,14 +57,14 @@ workflows:
   build-test-deploy:
     jobs:
       - build-and-test
-      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
-          requires:
-            - build-and-test
-          post-steps:
-            - run:
-                name: migrate
-                command: heroku run -a $HEROKU_APP_NAME rails db:migrate
-          filters:
-            branches:
-              only:
-                - main
+      # - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+      #     requires:
+      #       - build-and-test
+      #     post-steps:
+      #       - run:
+      #           name: migrate
+      #           command: heroku run -a $obscure-lowlands-45772 rails db:migrate
+      #     filters:
+      #       branches:
+      #         only:
+      #           - main
